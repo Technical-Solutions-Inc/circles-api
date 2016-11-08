@@ -13,15 +13,15 @@
 ActiveRecord::Schema.define(version: 20161107235940) do
 
   create_table "event_members", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
+    t.integer  "user_id",    null: false
+    t.integer  "event_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
-    t.text     "name"
-    t.date     "start_date"
+    t.text     "name",       null: false
+    t.date     "start_date", null: false
     t.date     "end_date"
     t.text     "image_url"
     t.datetime "created_at", null: false
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 20161107235940) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.text     "name"
-    t.text     "email"
+    t.text     "name",       null: false
+    t.text     "email",      null: false
     t.text     "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
