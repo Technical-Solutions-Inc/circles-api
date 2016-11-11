@@ -1,4 +1,4 @@
-class PingsController < ApplicationController
+class API::PingsController < ApplicationController
   def ping
     render json: {ping: ping_answer}
   end
