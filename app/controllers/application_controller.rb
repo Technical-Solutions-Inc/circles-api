@@ -6,6 +6,6 @@ class ApplicationController < ActionController::API
   end
 
   def count
-    params[:count] || DEFAULT_COUNT
+    params[:count] || default_count
   end
 end
