@@ -1,8 +1,13 @@
-class API::EventsController < ApplicationController
+class Api::EventsController < ApplicationController
   DEFAULT_COUNT = 20
 
   def index
-    events = Event.where(user_id: params[:user_id]).offset(params[:start_id].to_i).limit(params[:count] || DEFAULT_COUNT)
     render json: events
+  end
+
+  private 
+
+  def events
+    User.find(params[:user_id]).events.offset(params[:start_id].to_i).limit(params[:count] || DEFAULT_COUNT)
   end
 end
