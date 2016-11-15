@@ -19,7 +19,10 @@ end
 puts "\n\tAdding Events"
 EVENTS = [
   {name: "Thanksgiving", start_date: "2016-11-28"},
-  {name: "Boulder Visit", start_date: "2016-12-09", end_date: "2016-12-13"}
+  {name: "Boulder Visit", start_date: "2016-12-09", end_date: "2016-12-13"},
+  {name: "Burning Man 2016", start_date: "2016-08-22", end_date: "2016-09-05"},
+  {name: "Burning Man 2015", start_date: "2015-08-22", end_date: "2015-09-05"},
+  {name: "Burning Man 2014", start_date: "2014-08-22", end_date: "2014-09-05"}
 ]
 EVENTS.each do |event|
   puts "\n\t...Creating #{event} and adding members"
