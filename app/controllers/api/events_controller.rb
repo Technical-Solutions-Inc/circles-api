@@ -1,6 +1,8 @@
 class API::EventsController < ApplicationController
+  DEFAULT_COUNT = 20
+
   def index
-    events = EventIconBuilder.new(user_id: params[:user_id], start_id: params[:start_id], count: params[:count])
-    render json: events.build_payload
+    events = Event.where(user_id: params[:user_id]).offset(params[:start_id].to_i).limit(params[:count] || DEFAULT_COUNT)
+    render json: events
   end
 end

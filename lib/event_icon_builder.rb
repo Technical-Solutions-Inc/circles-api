@@ -1,4 +1,4 @@
-class EventIconBuilder
+class EventIconsBuilder
   attr_reader :events, :start_id, :count
 
   DEFAULT_COUNT = 50
