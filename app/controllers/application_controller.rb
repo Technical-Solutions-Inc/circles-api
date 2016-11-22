@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::API
-  class RequiredParams::Missing < StandardError; end
+  class RequiredParams < StandardError; end
   
   rescue_from 'ActiveRecord::RecordNotFound' do |exception|
-    render json: exception, status: 403
+    render json: { error: exception }, status: 403
   end
 
   # The follow section of the ApplicationController is for checking
@@ -12,15 +12,19 @@ class ApplicationController < ActionController::API
   # and fill it with an array of the params that need to be checked
   # for non-nil values.
 
-  rescue_from 'RequiredParams::Missing' do |exception|
-    render json: exception, status: 400
+  before_filter :check_required_params
+
+  rescue_from 'RequiredParams' do |exception|
+    render json: { error: exception }, status: 404
   end
 
   def check_required_params
-    required_params.select! do |param|
+    missing_params = required_params.select do |param|
       params[param.to_sym].nil?
     end
-    raise RequiredParams::Missing, missing_params_message(missing_params: required_params) unless required_params.empty?
+    unless missing_params.empty?
+      raise RequiredParams, missing_params_message(missing_params: missing_params)
+    end
   end
 
   def required_params
@@ -28,6 +32,6 @@ class ApplicationController < ActionController::API
   end
 
   def missing_params_message(missing_params:)
-    "The following params are required but were not found: #{missing_params.join(", ")}"
+    "The following param(s) are required but were not found: #{missing_params.join(", ")}"
   end
 end

@@ -1,11 +1,11 @@
 class Api::EventsController < ApplicationController
-  def index
-    @events = events
+  expose :events, :get_events
+
+  def required_params
+    %w(user_id)
   end
 
-  private 
-
-  def events
+  def get_events
     User.find(params[:user_id]).events.offset(start_id).limit(count)
   end
 

@@ -9,6 +9,7 @@ gem 'sqlite3'
 gem 'puma', '~> 3.0'
 
 gem 'jbuilder'
+gem 'decent_exposure', '3.0.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
