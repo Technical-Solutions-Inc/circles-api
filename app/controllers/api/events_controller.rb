@@ -1,6 +1,6 @@
 class Api::EventsController < ApplicationController
   def index
-    render json: events
+    @events = events
   end
 
   private 
@@ -11,5 +11,13 @@ class Api::EventsController < ApplicationController
 
   def default_count
     20
+  end
+
+  def start_id
+    params[:start_id].to_i
+  end
+
+  def count
+    params[:count] || default_count
   end
 end
